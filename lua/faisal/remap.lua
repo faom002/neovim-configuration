@@ -10,6 +10,10 @@ vim.api.nvim_set_keymap('n', '<leader>r', [[:%s/\<<C-r><C-w>\>//gI<Left><Left>]]
 
 
 
+-- code actions
+vim.keymap.set('n', '<leader>2', vim.lsp.buf.code_action, {})
+
+
 
 -- Optional: Set up key mappings for navigating branches and commits
 vim.api.nvim_set_keymap('n', '<leader>j',
@@ -94,26 +98,27 @@ end)
 
 local dap = require("dap")
 
-dap.adapters.gdb = {
-    type = "executable",
-    command = "gdb",
-    args = { "-i", "dap" }
+
+
+
+dap.adapters.codelldb = {
+  type = 'server',
+  host = '127.0.0.1',
+  port = 13000 -- 💀 Use the port printed out or specified with `--port`
 }
 
-
-dap.configurations.c = {
-    {
-        name = "Launch",
-        type = "gdb",
-        request = "launch",
-        program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end,
-        cwd = "${workspaceFolder}",
-    },
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+  },
 }
-
-
 
 
 
@@ -127,6 +132,16 @@ dap.configurations.c = {
 
 
 
+
+
+-- git add changes to satging
+
+vim.api.nvim_set_keymap('n', '.', ':Git add .<CR>', { noremap = true, silent = true })
+
+
+-- git commit the added files
+
+vim.api.nvim_set_keymap('n', '<leader>.', ':Git commit -m ""', { noremap = true, silent = true })
 
 
 

@@ -1,5 +1,3 @@
-
-
 local lsp_zero = require('lsp-zero')
 
 
@@ -19,7 +17,22 @@ require('mason-lspconfig').setup({
     },
 })
 
+
+lsp_zero.set_sign_icons({
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = '»'
+})
+
 local cmp = require('cmp')
+
+
+
+vim.api.nvim_set_hl(0, "MyNormal", { bg = "Black", fg = "White" })
+vim.api.nvim_set_hl(0, "MyFloatBorder", { bg = "#000000", fg = "#988829" })
+vim.api.nvim_set_hl(0, "MyCursorLine", { bg = "#988829", fg = "#000000" })
+
 
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
@@ -28,7 +41,21 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
     }),
+
+    window = {
+
+
+        completion = cmp.config.window.bordered({
+
+            border = "double",
+            winhighlight = "Normal:MyNormal,FloatBorder:MyFloatBorder,CursorLine:MyCursorLine,Search:None",
+
+        }),
+
+    },
+
 })
+
 
 lspconfig.lua_ls.setup({
     filetypes = { "lua" }
@@ -54,5 +81,4 @@ lspconfig.cssls.setup({
 lspconfig.tailwindcss.setup({
     filetypes = { "html", "css", "jsx", "tsx", "javascript", "typescript", "javascriptreact", "typescriptreact" }
 })
-require'lspconfig'.intelephense.setup{}
-
+require 'lspconfig'.intelephense.setup {}

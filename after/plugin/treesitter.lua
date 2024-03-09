@@ -1,3 +1,5 @@
+
+
 require("nvim-treesitter.configs").setup({
 
 	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
@@ -8,5 +10,12 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 
 		additional_vim_regex_highlighting = true,
+
+
 	},
+
 })
+
+
+
+
