@@ -23,7 +23,7 @@ vim.api.nvim_set_keymap('n', '<leader>j',
 
 
 
-
+-- show current key remaps that i have
 vim.api.nvim_set_keymap('n', ';', [[:lua require('telescope.builtin').keymaps()<CR>]], { noremap = true, silent = true })
 
 
@@ -139,6 +139,8 @@ dap.configurations.cpp = {
 -- (ctrl + n) for next suggestion
 -- (ctrl + e) for clearing out suggestion
 
+
+-- (shift + R) for renaming files and directories
 
 
 
