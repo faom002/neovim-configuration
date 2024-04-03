@@ -27,7 +27,7 @@ vim.api.nvim_set_keymap('n', '<leader>j',
 vim.api.nvim_set_keymap('n', ';', [[:lua require('telescope.builtin').keymaps()<CR>]], { noremap = true, silent = true })
 
 
-
+-- (vi") will tak me to the double quotes on that line your cursor is at
 
 
 
